@@ -10,12 +10,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get("/");
+app.get("/", (req, res) => {
+  res.send("hello from the book store api!");
+});
 app.use("/api/v1", storesRouter);
 app.use("/api/v1", bookRouter);
 
-app.use((req, res)=>res.status(404).send({error: '404 not found'}))
+app.use((req, res) => res.status(404).send({ error: "404 not found" }));
 
 app.listen(3000, (err) => {
-  console.log("server started on https://localhost:3000");
+  console.log("server started on http://localhost:3000");
 });
